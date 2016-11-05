@@ -20,12 +20,20 @@
     <ion-title>MED MEN</ion-title>
   </ion-navbar>
   <ion-toolbar primary>
-  	<ion-searchbar (ionInput)="onInput($event)"></ion-searchbar>
+  	<ion-searchbar 
+  	[(ngModel)]="drugSearch" 
+  	[showCancelButton]="shouldShowCancel" 
+  	(ionInput)="onInput($event)" 
+  	(ionCancel)="onCancel($event)">
+  	</ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-	<p>{{this.drugInfo}}</p>
-	
+	<ion-list *ngIf="showList">
+    <ion-item *ngFor="let item of drugsName">
+      {{ item }}
+  	</ion-item>
+  </ion-list>
 </ion-content>
