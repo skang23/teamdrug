@@ -61,15 +61,16 @@ export class Rxnorm {
     for (var i in data) {
       for (var j in data[i]) {
         if (j=='conceptProperties'){
-          console.log("GetConceptProperties: %o", data[i][j]);
-          return data[i][j];
+          console.log("data: %o", data[i][j]);
+          arr = arr.concat(data[i][j]);
+          console.log("Array %o", arr );
        //   arr.push(data[i][j]);
         }
       }
   
     }
-
-    return [];
+    console.log("Arr %o", arr);
+    return arr;
   }
   getDrugs(drug: string) {
     var parser = new DOMParser();
