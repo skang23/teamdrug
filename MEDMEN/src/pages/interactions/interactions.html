@@ -24,5 +24,15 @@
 
 
 <ion-content padding>
-
+	<ion-searchbar
+  [(ngModel)]="drugSearch"
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar>
+<ion-list *ngIf="showList">
+    <ion-item *ngFor="let item of drugsName">
+      {{ item }}
+    </ion-item>
+  </ion-list>
 </ion-content>
