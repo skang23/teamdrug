@@ -53,7 +53,7 @@ export class InteractionsPage {
 
           var drugGroup = drugJson.rxnormdata.drugGroup;
           var conceptGroups = drugGroup.conceptGroup;
-          console.log(conceptGroups);
+          console.log("Get Concept Groups %o", conceptGroups);
           conceptProperty = this.rxnorm.getConceptProperties(conceptGroups);
           console.log("Drugs List: %o", conceptProperty);
           for (var d in conceptProperty){ 
