@@ -1,22 +1,47 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, MenuController, NavController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+import firebase from 'firebase';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { ProfilePage } from '../pages/profile/profile';
+import { SavedSearchPage } from '../pages/saved-search/saved-search';
+import { LoginPage } from '../pages/login/login';
 
 
 @Component({
-  template: `<ion-nav [root]="rootPage"></ion-nav>`
+  templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = TabsPage;
+  @ViewChild('nav') nav: NavController;
+  rootPage:any = TabsPage;
+  pages: Array<{title: string, component: any}>;
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform, private menu: MenuController) {
+    this.pages = [
+        { title: 'Profile', component: ProfilePage },
+        { title: 'Saved Search', component: SavedSearchPage }
+    ];
+    firebase.initializeApp({
+        apiKey: "AIzaSyA9vqptDTepxrX7S09_cO_HzroGM9tc9AA",
+        authDomain: "ionic-firebase-fe562.firebaseapp.com",
+        databaseURL: "https://ionic-firebase-fe562.firebaseio.com",
+        storageBucket: "",
+        messagingSenderId: "1014682381401"
+    });
+
+    firebase.auth().onAuthStateChanged((user)=>{
+      if (!user) {
+        this.rootPage = LoginPage;
+      }
+    });
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
+  }
+
+  openPage(page) {
+    this.nav.push(page.component);
   }
 }
