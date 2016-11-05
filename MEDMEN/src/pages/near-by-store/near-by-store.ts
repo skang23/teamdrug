@@ -21,6 +21,7 @@ export class NearByStorePage {
   ionViewDidLoad() {
     console.log('Hello NearByStorePage Page + abc');
     console.log('hello hello');
+    console.log('hello');
   }
   logOut() {
   	this.authData.logoutUser().then(()=>{

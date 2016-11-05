@@ -24,7 +24,7 @@ export var ProfilePage = (function () {
     };
     ProfilePage = __decorate([
         Component({
-            selector: 'page-profile',template:/*ion-inline-start:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/pages/profile/profile.html"*/'<!--\n  Generated template for the Profile page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  	<ion-buttons start>\n	  	<button ion-button icon-only menuToggle>\n	  		<ion-icon name="menu"></ion-icon>\n	  	</button>\n	  </ion-buttons>\n    <ion-title>profile</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/pages/profile/profile.html"*/
+            selector: 'page-profile',template:/*ion-inline-start:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/pages/profile/profile.html"*/'<!--\n  Generated template for the Profile page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  	<ion-buttons start>\n	  	<button ion-button icon-only menuToggle>\n	  		<ion-icon name="menu"></ion-icon>\n	  	</button>\n	  </ion-buttons>\n    <ion-title>profile</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/pages/profile/profile.html"*/
         }), 
         __metadata('design:paramtypes', [NavController])
     ], ProfilePage);

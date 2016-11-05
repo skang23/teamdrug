@@ -23,7 +23,9 @@ export var NearByStorePage = (function () {
         this.authData = authData;
     }
     NearByStorePage.prototype.ionViewDidLoad = function () {
-        console.log('Hello NearByStorePage Page');
+        console.log('Hello NearByStorePage Page + abc');
+        console.log('hello hello');
+        console.log('hello');
     };
     NearByStorePage.prototype.logOut = function () {
         var _this = this;
@@ -33,7 +35,7 @@ export var NearByStorePage = (function () {
     };
     NearByStorePage = __decorate([
         Component({
-            selector: 'page-near-by-store',template:/*ion-inline-start:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/pages/near-by-store/near-by-store.html"*/'<!--\n  Generated template for the NearByStore page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  	<ion-buttons start>\n	  	<button ion-button icon-only menuToggle>\n	  		<ion-icon name="menu"></ion-icon>\n	  	</button>\n	  </ion-buttons>\n	  <ion-buttons end>\n    	<button ion-button icon-only (click)="logOut()">\n    		<ion-icon name="log-out"></ion-icon>\n    	</button>\n    </ion-buttons>\n    <ion-title>MED MEN</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/pages/near-by-store/near-by-store.html"*/
+            selector: 'page-near-by-store',template:/*ion-inline-start:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/pages/near-by-store/near-by-store.html"*/'<!--\n  Generated template for the NearByStore page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n  	<ion-buttons start>\n	  	<button ion-button icon-only menuToggle>\n	  		<ion-icon name="menu"></ion-icon>\n	  	</button>\n	  </ion-buttons>\n	  <ion-buttons end>\n    	<button ion-button icon-only (click)="logOut()">\n    		<ion-icon name="log-out"></ion-icon>\n    	</button>\n    </ion-buttons>\n    <ion-title>MED MEN</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/pages/near-by-store/near-by-store.html"*/
         }), 
         __metadata('design:paramtypes', [NavController, AuthData])
     ], NearByStorePage);

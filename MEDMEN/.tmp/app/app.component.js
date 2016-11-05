@@ -49,7 +49,7 @@ export var MyApp = (function () {
         __metadata('design:type', NavController)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Component({template:/*ion-inline-start:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <!--<ion-title>Menu</ion-title>-->\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav #nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/app/app.html"*/
+        Component({template:/*ion-inline-start:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <!--<ion-title>Menu</ion-title>-->\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav #nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/app/app.html"*/
         }), 
         __metadata('design:paramtypes', [Platform, MenuController])
     ], MyApp);

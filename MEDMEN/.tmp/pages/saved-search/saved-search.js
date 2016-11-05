@@ -24,7 +24,7 @@ export var SavedSearchPage = (function () {
     };
     SavedSearchPage = __decorate([
         Component({
-            selector: 'page-saved-search',template:/*ion-inline-start:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/pages/saved-search/saved-search.html"*/'<!--\n  Generated template for the SavedSearch page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>savedSearch</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/pages/saved-search/saved-search.html"*/
+            selector: 'page-saved-search',template:/*ion-inline-start:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/pages/saved-search/saved-search.html"*/'<!--\n  Generated template for the SavedSearch page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>savedSearch</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/pages/saved-search/saved-search.html"*/
         }), 
         __metadata('design:paramtypes', [NavController])
     ], SavedSearchPage);

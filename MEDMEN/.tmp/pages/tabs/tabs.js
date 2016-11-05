@@ -20,7 +20,7 @@ export var TabsPage = (function () {
         this.tab3Root = NearByStorePage;
     }
     TabsPage = __decorate([
-        Component({template:/*ion-inline-start:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Interactions" tabIcon="medkit"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Descriptions" tabIcon="clipboard"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="NearByStore" tabIcon="map"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/liayoo/Desktop/teamdrug/MEDMEN/src/pages/tabs/tabs.html"*/
+        Component({template:/*ion-inline-start:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Interactions" tabIcon="medkit"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Descriptions" tabIcon="clipboard"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="NearByStore" tabIcon="map"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/suyeonkang/ionic/teamdrug/MEDMEN/src/pages/tabs/tabs.html"*/
         }), 
         __metadata('design:paramtypes', [])
     ], TabsPage);
