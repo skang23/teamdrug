@@ -19,7 +19,8 @@ export class NearByStorePage {
   constructor(public navCtrl: NavController, public authData: AuthData) {}
 
   ionViewDidLoad() {
-    console.log('Hello NearByStorePage Page');
+    console.log('Hello NearByStorePage Page + abc');
+    console.log('hello hello');
   }
   logOut() {
   	this.authData.logoutUser().then(()=>{
