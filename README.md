@@ -8,7 +8,7 @@ Our app provides information about interaction between different drugs, importan
 1. Install node,ionic
 2. Install google plugin:
 cordova plugin add https://github.com/phonegap-googlemaps-plugin/cordova-plugin-googlemaps --variable API_KEY_FOR_IOS=YOUR_API_KEY
-3. Install aylien api
+3. Install aylien api:
 npm install aylien_textapi
 
 ## Video Walkthrough 
