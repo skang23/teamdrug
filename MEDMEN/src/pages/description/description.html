@@ -32,8 +32,19 @@
 
 <ion-content padding>
 	<ion-list *ngIf="showList">
-    <ion-item *ngFor="let item of drugsName">
-      {{ item }}
+    <ion-item text-wrap padding *ngFor="let item of drugsList" (click)="toggleDrugInfo(item)">
+    	<ion-icon color="primary" item-right [name]="item.icon"></ion-icon>
+      {{ item.name }}
+      <div *ngIf="item.showDetails">
+      	<ion-list>
+      		<ion-item text-wrap padding *ngFor="let di of item.drugInfo" (click)="toggleDetails(item)">
+      			{{ di.type }}
+      			<div *ngIf="di.showDetails">
+      				{{ di.detail }}
+      			</div>
+      		</ion-item>
+      	</ion-list>
+      </div>
   	</ion-item>
   </ion-list>
 </ion-content>

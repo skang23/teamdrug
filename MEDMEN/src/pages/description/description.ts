@@ -21,9 +21,9 @@ import { LoginPage } from '../login/login';
 export class DescriptionPage {
 	public drugSearch = '';
 	public showList: boolean;
-	public drugsName = [];
-  public drugsCuid = [];
-	public drugInfo;
+	public openDetail = 0;
+  public drugsList: Array<{name: string, rxcuid: string, drugInfo: Array<{type: string, details: string, showDetails: boolean}>, 
+  	icon: string, showDetails: boolean, numOpenSubArr}> = [];
 	public whichDrug: string;
 
   constructor(public navCtrl: NavController, public authData: AuthData, public openFDA: OpenFDA, public rxnorm: Rxnorm) {}
@@ -41,23 +41,25 @@ export class DescriptionPage {
     drugResponse.subscribe(
       data => {
         drugJson=this.rxnorm.xmlToJson(parser.parseFromString(data, "text/xml"));
-        this.drugsName = [];
-        console.log(JSON.stringify(drugJson));
 
         var drugGroup = drugJson.rxnormdata.drugGroup;
         var conceptGroups = drugGroup.conceptGroup;
-        console.log(conceptGroups);
+        //console.log(conceptGroups);
         conceptProperty = this.rxnorm.getConceptProperties(conceptGroups);
-        console.log("Drugs List: %o", conceptProperty);
+        //console.log("Drugs List: %o", conceptProperty);
         for (var d in conceptProperty){ 
-        	var name = conceptProperty[d].name['#text'];
-        	var rxcuid = conceptProperty[d].rxcui['#text'];
-        	this.drugsName.push(name);
-        	this.drugsCuid.push(rxcuid);
-          console.log(name);
+        	var dName = conceptProperty[d].name['#text'];
+        	var dRxcuid = conceptProperty[d].rxcui['#text'];
+        	this.drugsList.push({
+        		name: dName,
+        		rxcuid: dRxcuid,
+        		drugInfo: [],
+        		icon: 'ios-add-circle-outline',
+        		showDetails: false,
+        		numOpenSubArr: 0
+			    });
         }
         this.showList = true
-        console.log(this.drugsName);
        },
        error => {
         console.error("Error Finding Drugs!");
@@ -66,34 +68,125 @@ export class DescriptionPage {
     );
   }
 
-  getDrugInfo() {
-  	this.openFDA.fetchData('1299203').subscribe(
+  getDrugInfo(drug) {
+  	if (drug.drugInfo.length == 0){
+  		this.openFDA.fetchData(drug.rxcuid).subscribe(
 			data=>{
-				this.drugInfo = data.results[0].boxed_warning[0];
-			},
-			err=>{
-				console.log(err);
-			}
-		);
+		  	if (!data.hasOwnProperty('results')) {
+		  		console.log("data doesn't exist");
+		  	}
+		  	else {
+		  		let result = data.results[0];
+
+					// dosage & admin details
+					if (result.hasOwnProperty('dosage_and_administration')) {
+						drug.drugInfo.push({
+							type: 'Dosage and Administration',
+							details: result.dosage_and_administration[0],
+							showDetails: false
+						});
+					}
+					// warnings details (show boxed_warning or warnings_and_cautions or warnings)
+					if (result.hasOwnProperty('boxed_warning')) {
+						drug.drugInfo.push({
+							type: 'Warnings',
+							details: result.boxed_warning[0],
+							showDetails: false
+						});
+					}
+					else {
+						//let wac = data.results[0].warnings_and_cautions[0];
+						if (result.hasOwnProperty('warnings_and_cautions')) {
+							drug.drugInfo.push({
+							type: 'Warnings',
+							details: result.warnings_and_cautions[0],
+							showDetails: false
+							});
+						}
+						else {
+							//let w = data.results[0].warnings[0];
+							if (result.hasOwnProperty('warnings')) {
+								drug.drugInfo.push({
+								type: 'Warnings',
+								details: result.warnings[0],
+								showDetails: false
+								});
+							}
+						}
+					}
+					// pregnancy details
+					if (result.hasOwnProperty('pregnancy')) {
+						drug.drugInfo.push({
+							type: 'Pregnancy',
+							details: result.pregnancy[0],
+							showDetails: false
+						});
+					}
+					// stop use details
+					if (result.hasOwnProperty('stop_use')) {
+						drug.drugInfo.push({
+							type: 'Stop Use',
+							details: result.stop_use[0],
+							showDetails: false
+						});
+					}
+					// do not use details
+					if (result.hasOwnProperty('do_not_use')) {
+						drug.drugInfo.push({
+							type: 'Do Not Use',
+							details: result.do_not_use[0],
+							showDetails: false
+						});
+					}
+		  	}
+		  },
+		  err => {
+		  	return Observable.throw(err);
+		 	});
+  	}
+  	else {
+  		console.log(drug.drugInfo);
+  	}
+	}
+
+  toggleDrugInfo(item) {
+  	if (item.showDetails) {
+  		//if (item.numOpenSubArr == 0) {
+  			item.showDetails = false;
+	  		item.icon = 'ios-add-circle-outline';
+  		//}
+  	}
+  	else {
+  		item.showDetails = true;
+  		item.icon = 'ios-remove-circle-outline';
+  		this.getDrugInfo(item);
+  	}
+  }
+
+  toggleDetails(item) {
+  	let flag = item.drugInfo.showDetails;
+  	if (flag) {
+  		item.drugInfo.showDetails = false;
+  		item.numOpenSubArr--;
+  	}
+  	else {
+  		item.drugInfo.showDetails = true;
+  		item.numOpenSubArr++;
+  	}
   }
 
   onInput(event) {
   	let val = event.target.value;
-  	if (!val) {
-  		this.drugsName = [];
-  		this.drugsCuid = [];
-  	}
+		this.drugsList = [];
   	if (val && val.trim() != '') {
       this.whichDrug = val.trim();
       this.getDrugs(this.whichDrug);
     }
   }
 
-  // onCancel(event) {
-  // 	this.showList = false;
-  // 	event.target.value = '';
-  // 	this.drugsName = [];
-  // }
+  /*onCancel(event) {
+  	this.showList = false;
+  }*/
 
   logOut() {
   	this.authData.logoutUser().then(()=>{
