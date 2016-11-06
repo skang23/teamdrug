@@ -14,3 +14,14 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@font-face {
+	font-family: 'Amiri-Slanted';
+	src: url('../assets/fonts/amiri-slanted/Amiri-Slanted.eot');
+	src: url('../assets/fonts/amiri-slanted/Amiri-Slanted.eot') format('embedded-opentype'),
+		 url('../assets/fonts/amiri-slanted/Amiri-Slanted.woff') format('woff'),
+		 url('../assets/fonts/amiri-slanted/Amiri-Slanted.ttf') format('truetype'),
+		 url('../assets/fonts/amiri-slanted/Amiri-Slanted.svg#Amiri-Slanted') format('svg');
+	font-weight: normal;
+	font-style: italic;
+}

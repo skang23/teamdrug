@@ -90,63 +90,33 @@ export class DescriptionPage {
 					// dosage & admin details
 					if (result.hasOwnProperty('dosage_and_administration')) {
 						this.summarizeInfo( 'Dosage and Administration',result.dosage_and_administration[0],drug.drugInfo);
-						/*drug.drugInfo.push({
-							type: 'Dosage and Administration',
-							details: this.summarized,
-							showDetails: false
-						});*/
 					}
 					// warnings details (show boxed_warning or warnings_and_cautions or warnings)
 					if (result.hasOwnProperty('boxed_warning')) {
-						drug.drugInfo.push({
-							type: 'Warnings',
-							details: result.boxed_warning[0],
-							showDetails: false
-						});
+						this.summarizeInfo( 'Warnings',result.boxed_warning[0],drug.drugInfo);
 					}
 					else {
-						//let wac = data.results[0].warnings_and_cautions[0];
 						if (result.hasOwnProperty('warnings_and_cautions')) {
-							drug.drugInfo.push({
-							type: 'Warnings',
-							details: result.warnings_and_cautions[0],
-							showDetails: false
-							});
+							this.summarizeInfo( 'Warnings',result.warnings_and_cautions[0],drug.drugInfo);
 						}
 						else {
-							//let w = data.results[0].warnings[0];
+
 							if (result.hasOwnProperty('warnings')) {
-								drug.drugInfo.push({
-								type: 'Warnings',
-								details: result.warnings[0],
-								showDetails: false
-								});
+								this.summarizeInfo( 'Warnings',result.warnings[0],drug.drugInfo);
 							}
 						}
 					}
 					// pregnancy details
 					if (result.hasOwnProperty('pregnancy')) {
-						drug.drugInfo.push({
-							type: 'Pregnancy',
-							details: result.pregnancy[0],
-							showDetails: false
-						});
+						this.summarizeInfo( 'Pregnancy',result.pregnancy[0],drug.drugInfo);
 					}
 					// stop use details
 					if (result.hasOwnProperty('stop_use')) {
-						drug.drugInfo.push({
-							type: 'Stop Use',
-							details: result.stop_use[0],
-							showDetails: false
-						});
+						this.summarizeInfo( 'Stop Use',result.stop_use[0],drug.drugInfo);
 					}
 					// do not use details
 					if (result.hasOwnProperty('do_not_use')) {
-						drug.drugInfo.push({
-							type: 'Do Not Use',
-							details: result.do_not_use[0],
-							showDetails: false
-						});
+						this.summarizeInfo( 'Do Not Use',result.do_not_use[0],drug.drugInfo);
 					}
 		  	}
 		  },
@@ -169,10 +139,9 @@ export class DescriptionPage {
 			if (err == null) {
 				response.sentences.forEach(function(s) {
 					console.log(s);
-					alert(s);
-					//this.summarized = s;
+					//alert(s);
 					infoArr.push({
-						type: 'Dosage and Administration',
+						type: title,
 						details: s,
 						showDetails: false
 					});
@@ -182,7 +151,6 @@ export class DescriptionPage {
 			}
 			else {
 				console.log(err);
-				alert(err);
 			}
 		});
 	}
