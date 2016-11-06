@@ -11,7 +11,7 @@
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
 $text-color:        #000;
-$background-color:  grey;
+$background-color:  #d9d8d6;
 
 
 // Named Color Variables
@@ -23,11 +23,11 @@ $background-color:  grey;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
-  secondary:  #FF0000,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:    #dfc78d,
+  secondary:  #000000,
+  danger:     #ee1818,
+  light:      #d9d8d6,
+  dark:       #6c5c4f
 );
 
 

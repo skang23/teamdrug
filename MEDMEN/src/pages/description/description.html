@@ -17,20 +17,28 @@
     		<ion-icon name="log-out"></ion-icon>
     	</button>
     </ion-buttons>
-    <ion-title><span style = "color:red">MED</span> MEN</ion-title>
+    <ion-title><span style = "color:red !important">MED</span> MEN</ion-title>
   </ion-navbar>
-  <ion-toolbar primary>
-  	<ion-searchbar 
+
+</ion-header>
+
+        
+
+
+<ion-content padding>
+
+ <ion-list>
+    <ion-list-header>
+			Find Drug Information
+  </ion-list-header>
+       
+</ion-list>
+		<ion-searchbar 
   	[(ngModel)]="drugSearch" 
   	[showCancelButton]="shouldShowCancel" 
   	(ionInput)="onInput($event)" 
   	(ionCancel)="onCancel($event)">
   	</ion-searchbar>
-  </ion-toolbar>
-</ion-header>
-
-
-<ion-content padding>
 	<ion-list *ngIf="showList">
     <ion-item text-wrap padding *ngFor="let item of drugsList" >
     	<ion-icon color="primary" item-right [name]="item.icon" (click)="toggleDrugInfo(item)"></ion-icon>

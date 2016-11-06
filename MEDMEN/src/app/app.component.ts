@@ -15,7 +15,7 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MyApp {
   @ViewChild('nav') nav: NavController;
-  rootPage:any = InteractionsPage;
+  rootPage:any = TabsPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, private menu: MenuController) {
