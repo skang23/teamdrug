@@ -45,8 +45,7 @@
 	<ion-searchbar
   [(ngModel)]="drugSearch" 
   [showCancelButton]="shouldShowCancel"
-  (ionInput)="onInput($event)"
-  (ionCancel)="onCancel($event)">
+  (ionInput)="onInput($event)">
 </ion-searchbar>
 <ion-list *ngIf="showList">
     <button ion-item *ngFor="let item of drugsName" (click)="itemTapped($event, item)">
@@ -57,8 +56,9 @@
     <ion-card-header>
     {{interactionExist}}
   </ion-card-header>
-  <ion-card-content>
-    {{interactionString}}
+  <ion-card-content *ngFor="let item of interactionString; let severity of severityString">
+    {{item}}
+    <p *ngIf="severity=='N/A'?true:false">severity</p>
   </ion-card-content>
     </ion-card>
   <button button-round-border-radius ion-button full round (click)="findClicked()">Find Interaction</button>
