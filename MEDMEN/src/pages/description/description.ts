@@ -55,8 +55,7 @@ export class DescriptionPage {
         		rxcuid: dRxcuid,
         		drugInfo: [],
         		icon: 'ios-add-circle-outline',
-        		showDetails: false,
-        		numOpenSubArr: 0
+        		showDetails: false
 			    });
         }
         this.showList = true
@@ -154,10 +153,8 @@ export class DescriptionPage {
   toggleDrugInfo(item) {
 	  console.log("toggle drug info");
   	if (item.showDetails) {
-  		//if (item.numOpenSubArr == 0) {
   			item.showDetails = false;
 	  		item.icon = 'ios-add-circle-outline';
-  		//}
   	}
   	else {
   		item.showDetails = true;
