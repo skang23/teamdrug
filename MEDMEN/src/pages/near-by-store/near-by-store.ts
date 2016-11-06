@@ -44,6 +44,7 @@ export class NearByStorePage {
       Map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
       latLong = new google.maps.LatLng(latitude, longitude);
+      //console.log(latLong);
       var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
       var marker = new google.maps.Marker({
         map: Map,
@@ -63,7 +64,7 @@ export class NearByStorePage {
 
       };
 
-      console.log(Map);
+      //console.log(Map);
 
       Infowindow = new google.maps.InfoWindow();
 
@@ -117,10 +118,13 @@ export class NearByStorePage {
       });
 
       google.maps.event.addListener(marker, 'click', function () {
-        console.log(place);
+        //console.log(Latitude+','+Longitude);
         Infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
           'Place ID: ' + place.place_id + '<br>' +
-          place.vicinity + '</div>');
+          place.vicinity + '</div>'+'<button href="#" onclick="window.open(\'https://www.google.com/maps/dir/'+Latitude+','+Longitude+'/@'+Latitude+','+Longitude+'/'+place.name+'/\')">'+
+          'Open Google Map'+'</button>');
+          ///@'+Latitude+','+Longitude+
+
         Infowindow.open(Map, this);
 
       });
