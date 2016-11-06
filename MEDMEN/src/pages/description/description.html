@@ -17,7 +17,7 @@
     		<ion-icon name="log-out"></ion-icon>
     	</button>
     </ion-buttons>
-    <ion-title><span style = "color:red !important">MED</span> MEN</ion-title>
+    <ion-title><span style = "color:red !important; font-weight: bold">MED</span> MEN</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -44,8 +44,8 @@
       {{ item.name }}
       <div *ngIf="item.showDetails">
       	<ion-list>
-      		<ion-item text-wrap padding *ngFor="let di of item.drugInfo" (click)="toggleDetails(di)">
-      			{{ di.type }}
+      		<ion-item style="font-family: Amiri-Slanted" text-wrap padding *ngFor="let di of item.drugInfo" (click)="toggleDetails(di)">
+      			<span style="font-weight: bold">{{ di.type }}</span>
       			<div *ngIf="di.showDetails">
       				{{ di.details }}
       			</div>
