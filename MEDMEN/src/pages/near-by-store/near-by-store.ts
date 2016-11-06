@@ -26,7 +26,6 @@ export class NearByStorePage {
   ionViewDidLoad() {
     console.log('Hello NearByStorePage Page');
     var Map;
-    var map;
     var Infowindow;
     var Latitude = undefined;
     var Longitude = undefined;
@@ -44,7 +43,7 @@ export class NearByStorePage {
 
       Map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-      var latLong = new google.maps.LatLng(latitude, longitude);
+      latLong = new google.maps.LatLng(latitude, longitude);
       var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
       var marker = new google.maps.Marker({
         map: Map,
