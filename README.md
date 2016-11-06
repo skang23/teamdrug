@@ -13,5 +13,5 @@ npm install aylien_textapi
 
 ## Video Walkthrough 
 
-<img src='http://i.imgur.com/ZcumFu7.gifv' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/ZcumFu7.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
