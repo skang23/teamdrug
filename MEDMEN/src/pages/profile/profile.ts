@@ -22,6 +22,7 @@ export class ProfilePage {
     });
 
   }
+
   updateName(){
   let alert = this.alertCtrl.create({
     message: "Your first name & last name",

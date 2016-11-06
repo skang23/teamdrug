@@ -20,7 +20,7 @@ export class InteractionsPage {
   public drugSearch = '';
   public drugsName = [];
   public openList = [];
-
+  public shouldShowCancel = true;
   public drugsCuid = {};
   public addedDrugs = [];
   public addedCuid = {};
