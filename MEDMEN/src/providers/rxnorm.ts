@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Request, Http, Response , RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
@@ -14,10 +14,14 @@ export class Rxnorm {
   drugs = {}
   baseUrl:string = "https://rxnav.nlm.nih.gov/REST/";
   conceptProperty:any
+
+
+
   constructor(public http: Http) {
     console.log('Hello Rxnorm Provider');
   }
   
+ 
   xmlToJson(xml) {
 	
 	// Create the return object
@@ -61,17 +65,30 @@ export class Rxnorm {
     for (var i in data) {
       for (var j in data[i]) {
         if (j=='conceptProperties'){
-          console.log("data: %o", data[i][j]);
           arr = arr.concat(data[i][j]);
-          console.log("Array %o", arr );
        //   arr.push(data[i][j]);
         }
       }
   
     }
-    console.log("Arr %o", arr);
     return arr;
   }
+
+
+  getInteractionsResponse(cuidList: Array<string>) {
+    var headers = new Headers();
+    headers.append('Accept', 'application/json');
+
+    var resource = "interaction/list.json?rxcuis=";
+    
+    var cuidstring = cuidList.join('+');
+    console.log(cuidstring);
+    
+    cuidstring = encodeURI(cuidstring);
+    var url = this.baseUrl + resource + cuidstring;
+    return this.http.get(url, {headers: headers}).map((res:Response)=>res.json());
+  }
+
   getDrugs(drug: string) {
     var parser = new DOMParser();
     var drugResponse = this.getDrugsResponse(drug);
@@ -86,14 +103,12 @@ export class Rxnorm {
           var conceptGroups = drugGroup.conceptGroup;
           console.log(conceptGroups);
           conceptProperty = this.getConceptProperties(conceptGroups);
-          console.log("Drugs List: %o", conceptProperty);
           for (var d in conceptProperty){ 
            var name = conceptProperty[d].name['#text'];
            var rxcuid = conceptProperty[d].rxcui['#text'];
             this.drugs[name] = rxcuid;
             console.log(name+ ", " + rxcuid);
           }
-          console.log('Drugs %o', this.drugs);
          },
          error => {
            console.error("Error Finding Drugs!");

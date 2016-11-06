@@ -1,24 +1,39 @@
-page-reset-password {
-	form {
-		margin-botton: 32px;
-		button {
-			margin-top: 20px;
-		}
-	}
-	p {
-		font-size: 0.8em;
-		color: #d2d2d2;
-	}
-	ion-label {
-		margin-left: 5px;
-	}
-	ion-input {
-		padding: 5px;
-	}
-	.invalid {
-		border-bottom: 1px solid #FF6153;
-	}
-	.error-message .item-inner {
-		border-bottom: 0 !important;
-	}
+page-profile {
+  ion-item ion-label {
+    margin: 0 !important;
+  }
+
+  ion-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  ion-list-header {
+    background-color: #ECECEC;
+    margin: 0;
+    padding: 10px 16px;
+  }
+
+  ion-item {
+    padding: 0;
+  }
+
+  ion-datetime {
+    padding-left: 3px !important;
+  }
+
+  .item-inner {
+    border: none !important;
+    padding: 0;
+  }
+
+  .placeholder-profile {
+    color: #CCCCCC;
+  }
+
+  .dob-label {
+    color: #000000 !important;
+    padding: 10px !important;
+    max-width: 50% !important;
+  }
 }

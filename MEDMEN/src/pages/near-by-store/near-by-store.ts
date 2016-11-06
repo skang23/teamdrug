@@ -30,50 +30,48 @@ export class NearByStorePage {
     var Latitude = undefined;
     var Longitude = undefined;
 
-    // Get geo coordinates
-
-    function getPlacesLocation() {
-      navigator.geolocation.getCurrentPosition
-        (onPlacesSuccess, onPlacesError, { enableHighAccuracy: true });
-    }
-
-    // Success callback for get geo coordinates
-
-    var onPlacesSuccess = function (position) {
-
-      Latitude = position.coords.latitude;
-      Longitude = position.coords.longitude;
-
-
-      getPlaces(Latitude, Longitude);
-
-    }
-
     // Get places by using coordinates
 
     function getPlaces(latitude, longitude) {
-
       var latLong = new google.maps.LatLng(latitude, longitude);
 
       var mapOptions = {
+        center: new google.maps.LatLng(0, 0),
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
 
+      Map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+      latLong = new google.maps.LatLng(latitude, longitude);
+      var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+      var marker = new google.maps.Marker({
+        map: Map,
+        position: latLong,
+        animation: google.maps.Animation.BOUNCE,
+        icon: image,
+      });
+
+      marker.setMap(Map);
+      Map.setZoom(15);
+      Map.setCenter(marker.getPosition());
+
+      mapOptions = {
         center: new google.maps.LatLng(latitude, longitude),
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
 
       };
 
-      
-      Map = new google.maps.Map(document.getElementById("map"), mapOptions);
-      console.log(Map);      
+      console.log(Map);
 
       Infowindow = new google.maps.InfoWindow();
 
-      var service = new google.maps.places.PlacesService(Map); 
-      
+      var service = new google.maps.places.PlacesService(Map);
+
       service.nearbySearch({
         location: latLong,
-        radius: 500,
+        radius: 2000,
         type: ['pharmacy']
       }, foundStoresCallback);
 
@@ -83,10 +81,8 @@ export class NearByStorePage {
 
     var onPlacesWatchSuccess = function (position) {
 
-      var updatedLatitude = 40.758; 
-      //position.coords.latitude;
-      var updatedLongitude = -73.99 
-      //position.coords.longitude;
+      var updatedLatitude = position.coords.latitude;
+      var updatedLongitude = position.coords.longitude;
 
       if (updatedLatitude != Latitude && updatedLongitude != Longitude) {
 
@@ -94,7 +90,7 @@ export class NearByStorePage {
         Longitude = updatedLongitude;
 
         getPlaces(updatedLatitude, updatedLongitude);
-        
+
       }
     }
 
@@ -111,24 +107,10 @@ export class NearByStorePage {
         }
       }
     }
-    function getDetailsCallback(results, status) {
-
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-
-        for (var i = 0; i < results.length; i++) {
-
-          createMarker(results[i]);
-
-        }
-      }
-    }
 
     // Place a pin for each store on the map
 
     function createMarker(place) {
-
-      var placeLoc = place.geometry.location;
-
       var marker = new google.maps.Marker({
         map: Map,
         position: place.geometry.location
@@ -137,8 +119,8 @@ export class NearByStorePage {
       google.maps.event.addListener(marker, 'click', function () {
         console.log(place);
         Infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                'Place ID: ' + place.place_id + '<br>' +
-                place.vicinity + '</div>');
+          'Place ID: ' + place.place_id + '<br>' +
+          place.vicinity + '</div>');
         Infowindow.open(Map, this);
 
       });
@@ -161,7 +143,6 @@ export class NearByStorePage {
     watchPlacesPosition();
     console.log('Hello NearByStorePage Page end');
 
-
   }
 
   loadMap() {
@@ -175,30 +156,6 @@ export class NearByStorePage {
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-  }
-  addMarker() {
-
-    let marker = new google.maps.Marker({
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
-    });
-
-    let content = "<h4>Information!</h4>";
-
-    this.addInfoWindow(marker, content);
-
-  }
-  addInfoWindow(marker, content) {
-
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
-    });
-
-    google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.map, marker);
-    });
 
   }
   logOut() {
