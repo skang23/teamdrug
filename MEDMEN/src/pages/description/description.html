@@ -41,7 +41,7 @@
   	</ion-searchbar>
 	<ion-list *ngIf="showList">
     <ion-item text-wrap padding *ngFor="let item of drugsList" >
-    	<ion-icon color="primary" item-right [name]="item.icon" (click)="toggleDrugInfo(item)"></ion-icon>
+    	<ion-icon color="dark" item-right [name]="item.icon" (click)="toggleDrugInfo(item)"></ion-icon>
       {{ item.name }}
       <div *ngIf="item.showDetails">
       	<ion-list>
