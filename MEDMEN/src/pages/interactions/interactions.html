@@ -24,15 +24,43 @@
 
 
 <ion-content padding>
+ <ion-list>
+    <ion-list-header>
+    Selected Drugs
+  </ion-list-header>
+        <ion-item-sliding *ngFor="let drug of addedDrugs">
+            <ion-item>
+                {{drug}}
+            </ion-item>
+            <ion-item-options side="right">
+                <button danger (click)="deleteItem($event, drug)">Delete</button>
+            </ion-item-options>
+            <ion-item-options side="left">
+                <button danger (click)="saveItem($event, drug)">Save</button>
+            </ion-item-options>
+        </ion-item-sliding>
+</ion-list>
+
+
 	<ion-searchbar
-  [(ngModel)]="drugSearch"
+  [(ngModel)]="drugSearch" 
   [showCancelButton]="shouldShowCancel"
   (ionInput)="onInput($event)"
   (ionCancel)="onCancel($event)">
 </ion-searchbar>
 <ion-list *ngIf="showList">
-    <ion-item *ngFor="let item of drugsName">
-      {{ item }}
-    </ion-item>
+    <button ion-item *ngFor="let item of drugsName" (click)="itemTapped($event, item)">
+ {{ item }}
+    </button>
   </ion-list>
+  <ion-card *ngIf="showInteractions">
+    <ion-card-header>
+    {{interactionExist}}
+  </ion-card-header>
+  <ion-card-content>
+    {{interactionString}}
+  </ion-card-content>
+    </ion-card>
+  <button button-round-border-radius ion-button (click)="findClicked()">Find Interaction</button>
+
 </ion-content>
