@@ -5,7 +5,6 @@ import firebase from 'firebase';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { ProfilePage } from '../pages/profile/profile';
-import { SavedSearchPage } from '../pages/saved-search/saved-search';
 import { LoginPage } from '../pages/login/login';
 
 
