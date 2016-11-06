@@ -4,6 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import firebase from 'firebase';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { InteractionsPage } from '../pages/interactions/interactions';
 import { ProfilePage } from '../pages/profile/profile';
 import { SavedSearchPage } from '../pages/saved-search/saved-search';
 import { LoginPage } from '../pages/login/login';
@@ -14,7 +15,7 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MyApp {
   @ViewChild('nav') nav: NavController;
-  rootPage:any = TabsPage;
+  rootPage:any = InteractionsPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, private menu: MenuController) {
@@ -33,6 +34,9 @@ export class MyApp {
     firebase.auth().onAuthStateChanged((user)=>{
       if (!user) {
         this.rootPage = LoginPage;
+      }
+      else{
+        this.rootPage = TabsPage;
       }
     });
     platform.ready().then(() => {

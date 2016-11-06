@@ -83,13 +83,13 @@ export class ProfileData {
   * Firebase.
   */
   updatePassword(newPassword: string): any {
-    console.log("Password changing1");
+    
     this.currentUser.updatePassword(newPassword).then(() => {
-      console.log("Password changing2");
+    
       this.userProfile.child(this.currentUser.uid).update({
         password: newPassword
       });
-      console.log("Password Changed");
+    
     }, (error) => {
       console.log(error);
     });
