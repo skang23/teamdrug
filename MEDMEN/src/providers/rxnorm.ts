@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Request, Http, Response , RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
@@ -60,7 +60,7 @@ export class Rxnorm {
 	return obj;
 };
   getConceptProperties(data) {
-    var found = null;
+
     var arr = [];
     for (var i in data) {
       for (var j in data[i]) {
