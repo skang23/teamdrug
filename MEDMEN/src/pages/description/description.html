@@ -35,9 +35,8 @@
 </ion-list>
 		<ion-searchbar 
   	[(ngModel)]="drugSearch" 
-  	[showCancelButton]="shouldShowCancel" 
-  	(ionInput)="onInput($event)" 
-  	(ionCancel)="onCancel($event)">
+  	[showCancelButton]=true 
+  	(ionInput)="onInput($event)" >
   	</ion-searchbar>
 	<ion-list *ngIf="showList">
     <ion-item text-wrap padding *ngFor="let item of drugsList" >

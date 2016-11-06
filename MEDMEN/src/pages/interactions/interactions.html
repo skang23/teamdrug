@@ -45,8 +45,7 @@
 	<ion-searchbar
   [(ngModel)]="drugSearch" 
   [showCancelButton]="shouldShowCancel"
-  (ionInput)="onInput($event)"
-  (ionCancel)="onCancel($event)">
+  (ionInput)="onInput($event)">
 </ion-searchbar>
 <ion-list *ngIf="showList">
     <button ion-item *ngFor="let item of drugsName" (click)="itemTapped($event, item)">
