@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Observable } from 'rxjs/Rx';
+import AYLIENTextAPI from 'aylien_textapi';
 
 import { AuthData } from '../../providers/auth-data';
 import { OpenFDA } from '../../providers/open-fda';
@@ -25,8 +26,16 @@ export class DescriptionPage {
   public drugsList: Array<{name: string, rxcuid: string, drugInfo: Array<{type: string, details: string, showDetails: boolean}>, 
   	icon: string, showDetails: boolean}> = [];
 	public whichDrug: string;
+	public textapi: any;
+	public summarized:string;
 
-  constructor(public navCtrl: NavController, public authData: AuthData, public openFDA: OpenFDA, public rxnorm: Rxnorm) {}
+  constructor(public navCtrl: NavController, public authData: AuthData, public openFDA: OpenFDA, 
+  	public rxnorm: Rxnorm) {
+  	this.textapi = new AYLIENTextAPI({
+  		application_id: "19f04f69",
+    	application_key: "3df17f880ba0044b172a65e74a31afb5"
+  	});
+  }
 
   ionViewDidLoad() {
   	//this.getDrugInfo();
@@ -77,14 +86,15 @@ export class DescriptionPage {
 		  	}
 		  	else {
 		  		let result = data.results[0];
-
+		  		console.log(drug.rxcuid);
 					// dosage & admin details
 					if (result.hasOwnProperty('dosage_and_administration')) {
-						drug.drugInfo.push({
+						this.summarizeInfo( 'Dosage and Administration',result.dosage_and_administration[0],drug.drugInfo);
+						/*drug.drugInfo.push({
 							type: 'Dosage and Administration',
-							details: result.dosage_and_administration[0],
+							details: this.summarized,
 							showDetails: false
-						});
+						});*/
 					}
 					// warnings details (show boxed_warning or warnings_and_cautions or warnings)
 					if (result.hasOwnProperty('boxed_warning')) {
@@ -150,8 +160,34 @@ export class DescriptionPage {
   	}
 	}
 
+	summarizeInfo(title: string, info: string, infoArr) {
+		this.textapi.summarize({
+			title: title,
+			text: info,
+			sentences_number: 1
+		}, function(err, response) {
+			if (err == null) {
+				response.sentences.forEach(function(s) {
+					console.log(s);
+					alert(s);
+					//this.summarized = s;
+					infoArr.push({
+						type: 'Dosage and Administration',
+						details: s,
+						showDetails: false
+					});
+				});
+				//alert(response.sentences);
+				//this.summarized = response.sentences[0];
+			}
+			else {
+				console.log(err);
+				alert(err);
+			}
+		});
+	}
+
   toggleDrugInfo(item) {
-	  console.log("toggle drug info");
   	if (item.showDetails) {
   			item.showDetails = false;
 	  		item.icon = 'ios-add-circle-outline';
@@ -164,11 +200,8 @@ export class DescriptionPage {
   }
 
   toggleDetails(item) {
-	  console.log(item.showDetails);
-	  console.log("toggle details");
   	var flag = item.showDetails;
   	if (flag) {
-		  
   		item.showDetails = false;
   	}
   	else {
