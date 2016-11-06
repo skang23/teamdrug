@@ -20,7 +20,6 @@ export class MyApp {
   constructor(platform: Platform, private menu: MenuController) {
     this.pages = [
         { title: 'Profile', component: ProfilePage },
-        { title: 'Saved Search', component: SavedSearchPage }
     ];
     firebase.initializeApp({
         apiKey: "AIzaSyA9vqptDTepxrX7S09_cO_HzroGM9tc9AA",

@@ -69,7 +69,9 @@ export class LoginPage {
 	  this.loading = this.loadingCtrl.create({
 	  	dismissOnPageChange: true,
 	  });
-	  this.loading.present();
+	  let me = this;
+	  this.loading.present()
+	  window.setTimeout(function(){me.loading.dismiss();}, 5000);
 	 }
 
 	goToSignup() {
