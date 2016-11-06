@@ -121,7 +121,7 @@ export class NearByStorePage {
         //console.log(Latitude+','+Longitude);
         Infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
           'Place ID: ' + place.place_id + '<br>' +
-          place.vicinity + '</div>'+'<button href="#" onclick="window.open(\'https://www.google.com/maps/dir/'+Latitude+','+Longitude+'/@'+Latitude+','+Longitude+'/'+place.name+'/\')">'+
+          place.vicinity + '</div>'+'<button href="#" onclick="window.open(\'https://www.google.com/maps/dir/'+Latitude+','+Longitude+'/@'+Latitude+','+Longitude+'/'+place.vicinity+'/\')">'+
           'Open Google Map'+'</button>');
           ///@'+Latitude+','+Longitude+
 
