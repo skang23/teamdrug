@@ -23,7 +23,7 @@ export class DescriptionPage {
 	public showList: boolean;
 	public openDetail = 0;
   public drugsList: Array<{name: string, rxcuid: string, drugInfo: Array<{type: string, details: string, showDetails: boolean}>, 
-  	icon: string, showDetails: boolean, numOpenSubArr}> = [];
+  	icon: string, showDetails: boolean}> = [];
 	public whichDrug: string;
 
   constructor(public navCtrl: NavController, public authData: AuthData, public openFDA: OpenFDA, public rxnorm: Rxnorm) {}
@@ -72,6 +72,7 @@ export class DescriptionPage {
   	if (drug.drugInfo.length == 0){
   		this.openFDA.fetchData(drug.rxcuid).subscribe(
 			data=>{
+				console.log("getdruginfo");
 		  	if (!data.hasOwnProperty('results')) {
 		  		console.log("data doesn't exist");
 		  	}
@@ -141,7 +142,8 @@ export class DescriptionPage {
 		  	}
 		  },
 		  err => {
-		  	return Observable.throw(err);
+			  console.log("error");
+		  //	Observable.throw(err);
 		 	});
   	}
   	else {
@@ -150,6 +152,7 @@ export class DescriptionPage {
 	}
 
   toggleDrugInfo(item) {
+	  console.log("toggle drug info");
   	if (item.showDetails) {
   		//if (item.numOpenSubArr == 0) {
   			item.showDetails = false;
@@ -164,14 +167,15 @@ export class DescriptionPage {
   }
 
   toggleDetails(item) {
-  	let flag = item.drugInfo.showDetails;
+	  console.log(item.showDetails);
+	  console.log("toggle details");
+  	var flag = item.showDetails;
   	if (flag) {
-  		item.drugInfo.showDetails = false;
-  		item.numOpenSubArr--;
+		  
+  		item.showDetails = false;
   	}
   	else {
-  		item.drugInfo.showDetails = true;
-  		item.numOpenSubArr++;
+  		item.showDetails = true;
   	}
   }
 
